@@ -16,6 +16,7 @@ import { privateApis as blockEditorPrivateApis } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import { unlock } from '../../lock-unlock';
+import cloneDeep from '../../utils/clone-deep';
 import setNestedValue from '../../utils/set-nested-value';
 
 const { GlobalStylesContext, cleanEmptyObject } = unlock(
@@ -38,7 +39,7 @@ function resolveBlockStyleVariations( userConfig ) {
 		return userConfig;
 	}
 
-	const variationsConfig = JSON.parse( JSON.stringify( userConfig ) );
+	const variationsConfig = cloneDeep( userConfig );
 
 	Object.entries( sharedVariations ).forEach(
 		( [ variationName, variation ] ) => {
