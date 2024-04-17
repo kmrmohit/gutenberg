@@ -121,14 +121,14 @@ function ListItem( {
 }
 
 export default function ViewList( {
-	view,
-	fields,
 	data,
-	isLoading,
+	fields,
 	getItemId,
+	id: preferredId,
+	isLoading,
 	onSelectionChange,
 	selection,
-	id: preferredId,
+	view,
 } ) {
 	const baseId = useInstanceId( ViewList, 'view-list', preferredId );
 	const selectedItem = data?.findLast( ( item ) =>
