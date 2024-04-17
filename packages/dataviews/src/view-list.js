@@ -21,6 +21,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { unlock } from './lock-unlock';
+import ItemActions from './item-actions';
 
 const {
 	useCompositeStoreV2: useCompositeStore,
@@ -30,6 +31,7 @@ const {
 } = unlock( componentsPrivateApis );
 
 function ListItem( {
+	actions,
 	id,
 	item,
 	isSelected,
@@ -115,12 +117,28 @@ function ListItem( {
 						</HStack>
 					</CompositeItem>
 				</div>
+				<div role="gridcell">
+					<CompositeItem
+						// To be able to pass ItemActions directly, it should pass the incoming props to the underlying element:
+						// https://ariakit.org/guide/composition#custom-components-must-be-open-for-extension
+						render={ ( props ) => (
+							<ItemActions
+								actions={ props.actions }
+								item={ props.item }
+								isCompact
+							/>
+						) }
+						item={ item }
+						actions={ actions }
+					/>
+				</div>
 			</HStack>
 		</CompositeRow>
 	);
 }
 
 export default function ViewList( {
+	actions,
 	data,
 	fields,
 	getItemId,
@@ -192,6 +210,7 @@ export default function ViewList( {
 					<ListItem
 						key={ id }
 						id={ id }
+						actions={ actions }
 						item={ item }
 						isSelected={ item === selectedItem }
 						onSelect={ onSelect }
