@@ -408,7 +408,7 @@ export function scopeFeatureSelectors( scope, selectors ) {
 		return;
 	}
 
-	const featureSelectors = JSON.parse( JSON.stringify( selectors ) );
+	const featureSelectors = {};
 
 	Object.entries( selectors ).forEach( ( [ feature, selector ] ) => {
 		if ( typeof selector === 'string' ) {
@@ -416,6 +416,8 @@ export function scopeFeatureSelectors( scope, selectors ) {
 		}
 
 		if ( typeof selector === 'object' ) {
+			featureSelectors[ feature ] = {};
+
 			Object.entries( selector ).forEach(
 				( [ subfeature, subfeatureSelector ] ) => {
 					featureSelectors[ feature ][ subfeature ] = scopeSelector(
