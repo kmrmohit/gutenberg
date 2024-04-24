@@ -152,7 +152,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 		[ postType, postId, isLargeViewport ]
 	);
 
-	// get the styles from the global styles
+	// Get style data from global styles.
 	const { styles } = useStyles();
 
 	const settingsBlockPatterns =
@@ -241,7 +241,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 					BLOCK_EDITOR_SETTINGS.includes( key )
 				)
 			),
-			__experimentalStyles: styles,
+			globalStyles: styles,
 			allowedBlockTypes,
 			allowRightClickOverrides,
 			focusMode: focusMode && ! forceDisableFocusMode,
