@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 
@@ -39,13 +38,8 @@ export function useStyles() {
 		};
 	}, [] );
 
-	// Make sure to update styles when isReady changes.
-	const config = useMemo( () => {
-		return {
-			styles: styles ?? DEFAULT_STYLES,
-			isReady,
-		};
-	}, [ isReady, styles ] );
-
-	return config;
+	return {
+		styles: styles ?? DEFAULT_STYLES,
+		isReady,
+	};
 }
