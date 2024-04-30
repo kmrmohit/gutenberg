@@ -26,7 +26,10 @@ import { usesContextKey } from './components/rich-text/format-edit';
 import { ExperimentalBlockCanvas } from './components/block-canvas';
 import { getDuotoneFilter } from './components/duotone/utils';
 import { useFlashEditableBlocks } from './components/use-flash-editable-blocks';
-import { selectBlockPatternsKey } from './store/private-keys';
+import {
+	globalStylesDataKey,
+	selectBlockPatternsKey,
+} from './store/private-keys';
 import { requiresWrapperOnCopy } from './components/writing-flow/utils';
 import { PrivateRichText } from './components/rich-text/';
 
@@ -59,6 +62,7 @@ lock( privateApis, {
 	useReusableBlocksRenameHint,
 	usesContextKey,
 	useFlashEditableBlocks,
+	globalStylesDataKey,
 	selectBlockPatternsKey,
 	requiresWrapperOnCopy,
 	PrivateRichText,

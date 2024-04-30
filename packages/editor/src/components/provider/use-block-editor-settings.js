@@ -233,6 +233,8 @@ function useBlockEditorSettings( settings, postType, postId ) {
 	}, [ settings.allowedBlockTypes, hiddenBlockTypes, blockTypes ] );
 
 	const forceDisableFocusMode = settings.focusMode === false;
+	const { globalStylesDataKey, selectBlockPatternsKey } =
+		unlock( privateApis );
 
 	return useMemo(
 		() => ( {
@@ -241,7 +243,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 					BLOCK_EDITOR_SETTINGS.includes( key )
 				)
 			),
-			globalStyles: styles,
+			[ globalStylesDataKey ]: styles,
 			allowedBlockTypes,
 			allowRightClickOverrides,
 			focusMode: focusMode && ! forceDisableFocusMode,
@@ -250,7 +252,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 			keepCaretInsideBlock,
 			mediaUpload: hasUploadPermissions ? mediaUpload : undefined,
 			__experimentalBlockPatterns: blockPatterns,
-			[ unlock( privateApis ).selectBlockPatternsKey ]: ( select ) =>
+			[ selectBlockPatternsKey ]: ( select ) =>
 				unlock( select( coreStore ) ).getBlockPatternsForPostType(
 					postType
 				),
