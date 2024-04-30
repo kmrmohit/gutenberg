@@ -21,7 +21,7 @@ import inserterMediaCategories from '../media-categories';
 import { mediaUpload } from '../../utils';
 import { store as editorStore } from '../../store';
 import { unlock } from '../../lock-unlock';
-import { useStyles } from '../use-styles';
+import { useGlobalStylesData } from '../use-global-styles-data';
 
 const EMPTY_BLOCKS_LIST = [];
 
@@ -153,7 +153,7 @@ function useBlockEditorSettings( settings, postType, postId ) {
 	);
 
 	// Get style data from global styles.
-	const { styles } = useStyles();
+	const { styles } = useGlobalStylesData();
 
 	const settingsBlockPatterns =
 		settings.__experimentalAdditionalBlockPatterns ?? // WP 6.0

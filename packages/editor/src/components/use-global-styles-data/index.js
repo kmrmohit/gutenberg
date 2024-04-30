@@ -6,7 +6,7 @@ import { store as coreStore } from '@wordpress/core-data';
 
 const DEFAULT_STYLES = {};
 
-export function useStyles() {
+export function useGlobalStylesData() {
 	const { styles, isReady } = useSelect( ( select ) => {
 		const {
 			getEditedEntityRecord,
