@@ -19,13 +19,13 @@ import { PinnedItems } from '@wordpress/interface';
 import CollapsableBlockToolbar from '../collapsible-block-toolbar';
 import DocumentBar from '../document-bar';
 import DocumentTools from '../document-tools';
+import MoreMenu from '../more-menu';
 import PostPreviewButton from '../post-preview-button';
+import PostPublishButtonOrToggle from '../post-publish-button/post-publish-button-or-toggle';
 import PostSavedState from '../post-saved-state';
+import PostTypeSupportCheck from '../post-type-support-check';
 import PostViewLink from '../post-view-link';
 import PreviewDropdown from '../preview-dropdown';
-import MoreMenu from '../more-menu';
-import PostPublishButtonOrToggle from '../post-publish-button/post-publish-button-or-toggle';
-
 import { store as editorStore } from '../../store';
 
 const slideY = {
@@ -88,7 +88,9 @@ function Header( {
 							! isBlockToolsCollapsed && hasTopToolbar,
 					} ) }
 				>
-					<DocumentBar />
+					<PostTypeSupportCheck supportKeys="title">
+						<DocumentBar />
+					</PostTypeSupportCheck>
 				</div>
 			</motion.div>
 			<motion.div
