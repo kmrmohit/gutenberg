@@ -49,12 +49,14 @@ function Header( {
 		hasFixedToolbar,
 	} = useSelect( ( select ) => {
 		const { get: getPreference } = select( preferencesStore );
-		const { getEditorMode } = select( editorStore );
+		const {
+			getEditorMode,
+			isPublishSidebarOpened: _isPublishSidebarOpened,
+		} = select( editorStore );
 
 		return {
 			isTextEditor: getEditorMode() === 'text',
-			isPublishSidebarOpened:
-				select( editorStore ).isPublishSidebarOpened(),
+			isPublishSidebarOpened: _isPublishSidebarOpened(),
 			showIconLabels: getPreference( 'core', 'showIconLabels' ),
 			hasFixedToolbar: getPreference( 'core', 'fixedToolbar' ),
 		};
