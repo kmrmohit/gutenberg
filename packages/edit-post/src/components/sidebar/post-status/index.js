@@ -11,6 +11,7 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import {
 	PluginPostStatusInfo,
 	PostAuthorPanel,
+	PostDiscussionPanel,
 	PostSchedulePanel,
 	PostSyncStatus,
 	PostURLPanel,
