@@ -50,8 +50,8 @@ export default function PageSummary() {
 							<PostSchedulePanel />
 							<PostTemplatePanel />
 							<PostURLPanel />
+							<PostAuthorPanel />
 						</VStack>
-						<PostAuthorPanel />
 						{ fills }
 					</>
 				) }
