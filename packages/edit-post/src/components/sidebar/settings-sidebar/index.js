@@ -21,7 +21,6 @@ import {
 	PageAttributesPanel,
 	PluginDocumentSettingPanel,
 	PluginSidebar,
-	PostDiscussionPanel,
 	PostLastRevisionPanel,
 	PostTaxonomiesPanel,
 	privateApis as editorPrivateApis,
