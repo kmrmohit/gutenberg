@@ -106,6 +106,7 @@ export default function PostStatus() {
 							<PostSchedulePanel />
 							<PostTemplatePanel />
 							<PostURLPanel />
+							<PostDiscussionPanel />
 							<PostSyncStatus />
 						</VStack>
 						<PostSticky />

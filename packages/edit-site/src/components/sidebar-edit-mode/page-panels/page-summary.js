@@ -6,6 +6,7 @@ import {
 	PluginPostStatusInfo,
 	PostAuthorPanel,
 	PostURLPanel,
+	PostDiscussionPanel,
 	PostSchedulePanel,
 	PostTemplatePanel,
 	PostFeaturedImagePanel,
@@ -50,6 +51,7 @@ export default function PageSummary() {
 							<PostSchedulePanel />
 							<PostTemplatePanel />
 							<PostURLPanel />
+							<PostDiscussionPanel />
 						</VStack>
 						<PostAuthorPanel />
 						{ fills }

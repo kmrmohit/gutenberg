@@ -171,7 +171,6 @@ const SidebarContent = ( { tabName, keyboardShortcut, isEditingTemplate } ) => {
 					<PluginDocumentSettingPanel.Slot />
 					<PostLastRevisionPanel />
 					<PostTaxonomiesPanel />
-					<PostDiscussionPanel />
 					<PageAttributesPanel />
 					<PatternOverridesPanel />
 					{ ! isEditingTemplate && <MetaBoxes location="side" /> }
