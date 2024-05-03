@@ -75,6 +75,7 @@ function PostDiscussionToggle( { isOpen, onClick } ) {
 			size="compact"
 			className="editor-post-discussion__panel-toggle"
 			variant="tertiary"
+			aria-label={ __( 'Change discussion options' ) }
 			aria-expanded={ isOpen }
 			onClick={ onClick }
 		>
