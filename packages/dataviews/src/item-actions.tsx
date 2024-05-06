@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import type { MouseEventHandler } from 'react';
+
+/**
  * WordPress dependencies
  */
 import {
@@ -15,6 +20,7 @@ import { moreVertical } from '@wordpress/icons';
  * Internal dependencies
  */
 import { unlock } from './lock-unlock';
+import type { Action, ActionModal, Item } from './types';
 
 const {
 	DropdownMenuV2: DropdownMenu,
@@ -24,7 +30,41 @@ const {
 	kebabCase,
 } = unlock( componentsPrivateApis );
 
-function ButtonTrigger( { action, onClick } ) {
+interface ButtonTriggerProps {
+	action: Action;
+	onClick: MouseEventHandler;
+}
+
+interface DropdownMenuItemTriggerProps {
+	action: Action;
+	onClick: MouseEventHandler;
+}
+
+interface ActionWithModalProps {
+	action: ActionModal;
+	item: Item;
+	ActionTrigger: (
+		props: ButtonTriggerProps | DropdownMenuItemTriggerProps
+	) => JSX.Element;
+}
+
+interface ActionsDropdownMenuGroupProps {
+	actions: Action[];
+	item: Item;
+}
+
+interface ItemActionsProps {
+	item: Item;
+	actions: Action[];
+	isCompact: boolean;
+}
+
+interface CompactItemActionsProps {
+	item: Item;
+	actions: Action[];
+}
+
+function ButtonTrigger( { action, onClick }: ButtonTriggerProps ) {
 	return (
 		<Button
 			label={ action.label }
@@ -36,18 +76,25 @@ function ButtonTrigger( { action, onClick } ) {
 	);
 }
 
-function DropdownMenuItemTrigger( { action, onClick } ) {
+function DropdownMenuItemTrigger( {
+	action,
+	onClick,
+}: DropdownMenuItemTriggerProps ) {
 	return (
 		<DropdownMenuItem
 			onClick={ onClick }
-			hideOnClick={ ! action.RenderModal }
+			hideOnClick={ 'RenderModal' in action }
 		>
 			<DropdownMenuItemLabel>{ action.label }</DropdownMenuItemLabel>
 		</DropdownMenuItem>
 	);
 }
 
-function ActionWithModal( { action, item, ActionTrigger } ) {
+function ActionWithModal( {
+	action,
+	item,
+	ActionTrigger,
+}: ActionWithModalProps ) {
 	const [ isModalOpen, setIsModalOpen ] = useState( false );
 	const actionTriggerProps = {
 		action,
@@ -78,11 +125,14 @@ function ActionWithModal( { action, item, ActionTrigger } ) {
 	);
 }
 
-function ActionsDropdownMenuGroup( { actions, item } ) {
+function ActionsDropdownMenuGroup( {
+	actions,
+	item,
+}: ActionsDropdownMenuGroupProps ) {
 	return (
 		<DropdownMenuGroup>
 			{ actions.map( ( action ) => {
-				if ( !! action.RenderModal ) {
+				if ( 'RenderModal' in action ) {
 					return (
 						<ActionWithModal
 							key={ action.id }
@@ -104,7 +154,11 @@ function ActionsDropdownMenuGroup( { actions, item } ) {
 	);
 }
 
-export default function ItemActions( { item, actions, isCompact } ) {
+export default function ItemActions( {
+	item,
+	actions,
+	isCompact,
+}: ItemActionsProps ) {
 	const { primaryActions, eligibleActions } = useMemo( () => {
 		// If an action is eligible for all items, doesn't need
 		// to provide the `isEligible` function.
@@ -134,7 +188,7 @@ export default function ItemActions( { item, actions, isCompact } ) {
 		>
 			{ !! primaryActions.length &&
 				primaryActions.map( ( action ) => {
-					if ( !! action.RenderModal ) {
+					if ( 'RenderModal' in action ) {
 						return (
 							<ActionWithModal
 								key={ action.id }
@@ -157,7 +211,7 @@ export default function ItemActions( { item, actions, isCompact } ) {
 	);
 }
 
-function CompactItemActions( { item, actions } ) {
+function CompactItemActions( { item, actions }: CompactItemActionsProps ) {
 	return (
 		<DropdownMenu
 			trigger={
