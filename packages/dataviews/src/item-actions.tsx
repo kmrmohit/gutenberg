@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import type { MouseEventHandler } from 'react';
+import type { MouseEventHandler, ReactElement } from 'react';
 
 /**
  * WordPress dependencies
@@ -45,7 +45,7 @@ interface ActionWithModalProps {
 	item: Item;
 	ActionTrigger: (
 		props: ButtonTriggerProps | DropdownMenuItemTriggerProps
-	) => JSX.Element;
+	) => ReactElement;
 }
 
 interface ActionsDropdownMenuGroupProps {
