@@ -165,7 +165,8 @@ export function GridItemResizer( { clientId, onChange } ) {
 					);
 					const columnEnd = getClosestLine(
 						gridColumnLines,
-						blockElement.offsetLeft + boxElement.offsetWidth
+						blockElement.offsetLeft +
+							( boxElement.offsetWidth + boxElement.offsetLeft )
 					);
 					const rowEnd = getClosestLine(
 						gridRowLines,
