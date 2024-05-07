@@ -169,7 +169,8 @@ export function GridItemResizer( { clientId, onChange } ) {
 					);
 					const rowEnd = getClosestLine(
 						gridRowLines,
-						blockElement.offsetTop + boxElement.offsetHeight
+						blockElement.offsetTop +
+							( boxElement.offsetHeight + boxElement.offsetTop )
 					);
 					onChange( {
 						columnSpan: Math.max( columnEnd - columnStart, 1 ),
